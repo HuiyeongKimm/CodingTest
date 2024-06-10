@@ -1,7 +1,6 @@
 package Hash;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Process {
     public static void main(String[] args) {
@@ -12,14 +11,17 @@ public class Process {
 
     public int solution(int[] priorities, int location) {
         int answer = 0;
-        Queue<Integer> queue = new LinkedList<>();
-        for(int i : priorities){
-            queue.add(i);
-        }
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
 
-        while(!queue.isEmpty()){
-            if(queue.peek())
+
+        for(int i : priorities){
+            pq.add(i);
         }
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//        for(int i = 0; i < priorities.length; i++) {
+//            map.put()
+//        }
+
         return answer;
     }
 }
