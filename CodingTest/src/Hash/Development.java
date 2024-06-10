@@ -7,34 +7,28 @@ import java.util.Queue;
 public class Development {
     public static void main(String[] args) {
         Development development = new Development();
-        List<Integer> solutionList = development.solution(new int[]{95, 90, 99, 99, 80, 99}, new int[]{1, 1, 1, 1, 1, 1});
+        List<Integer> solutionList = development.solution(new int[]{95, 90, 99, 99, 80, 99},
+                new int[]{1, 2, 3, 4, 5, 6});
         System.out.println("solution = " + solutionList);
     }
 
     public List<Integer> solution(int[] progresses, int[] speeds) {
         List<Integer> answerList = new LinkedList<>();
-        int count = 1;
-        Queue<Integer> answerQueue = new LinkedList<>();
-
-        for(int i = 0; i < progresses.length; i++) {
-            answerQueue.add((int) Math.ceil((double) (100 - progresses[i]) / speeds[i]));
+        Queue<Integer> pq = new LinkedList<>();
+        for(int i : progresses) {
+            pq.add(i);
         }
-
-        while(!answerQueue.isEmpty()) {
-            int number = answerQueue.peek();
-            answerQueue.remove();
-            if(answerQueue.peek() == null) {
-                break;
+//        while(!pq.isEmpty()) {
+//            System.out.print("pq :" +pq.poll() );
+//            System.out.println("   speed = " + speeds[speeds.length - pq.size() - 1]); //speeds
+//        }
+        int day = 1;
+        while(!pq.isEmpty()) {
+            if(pq.peek() + speeds[speeds.length - pq.size()] * day >= 100) {
+                pq.poll();
             }
-            if(number >= answerQueue.peek()) {
-                count++;
-            } else {
-                answerList.add(count);
-                count = 1;
-            }
+            day++;
         }
-        answerList.add(count);
-
         return answerList;
     }
 }
