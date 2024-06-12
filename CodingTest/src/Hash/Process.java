@@ -13,7 +13,6 @@ public class Process {
         int answer = 0;
         PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
 
-
         for(int i : priorities){
             pq.add(i);
         }
