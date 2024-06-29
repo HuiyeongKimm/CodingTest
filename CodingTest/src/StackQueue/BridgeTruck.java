@@ -13,28 +13,19 @@ public class BridgeTruck {
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
         int count = 0;
-        Queue<Integer> waitQueue = new LinkedList<>();
+        Queue<Integer> bridgeQueue = new LinkedList<>();
         Queue<Integer> truckQueue = new LinkedList<>();
 
         for(int i : truck_weights) {
-            waitQueue.add(i);
+            truckQueue.add(i);
         }
 
-        while(!waitQueue.isEmpty() || !truckQueue.isEmpty()) {
-            truckQueue.add(waitQueue.poll());
+        for(int i = 0; i < bridge_length; i++) {
+            bridgeQueue.add(0);
+        }
 
-            if (truckQueue.stream().mapToInt(Integer::intValue).sum()
-                    + waitQueue.peek() < weight) {
-                answer += bridge_length;
-                count += bridge_length;
-            }
+        while(!truckQueue.isEmpty()) {
 
-            if(count == bridge_length) {
-                truckQueue.poll();
-                count = 0;
-            }
-            count++;
-            answer++;
         }
         return answer;
     }
