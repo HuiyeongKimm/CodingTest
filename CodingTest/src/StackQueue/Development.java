@@ -23,16 +23,16 @@ public class Development {
         }
 
         while(!pq.isEmpty()) {
-            if(pq.peek() + speeds[speeds.length - pq.size()] * day >= 100) {
+            boolean isComplete = pq.peek() + speeds[speeds.length - pq.size()] * day >= 100;
+            if(isComplete) {
                 count++;
                 pq.poll();
-                day = 1;
             } else {
-                day++;
                 if(count != 0) {
                     answerList.add(count);
                     count = 0;
                 }
+                day++;
             }
         }
 
