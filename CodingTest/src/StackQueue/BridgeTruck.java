@@ -7,21 +7,25 @@ public class BridgeTruck {
     public static void main(String[] args) {
         BridgeTruck bridgeTruck = new BridgeTruck();
         int solution = bridgeTruck.solution(2, 10, new int[]{7, 4, 5, 6});
+        System.out.println("solution = " + solution);
     }
 
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
-        Queue<Integer> queue = new LinkedList<>();
+        int count = 0;
+        Queue<Integer> bridgeQueue = new LinkedList<>();
+        Queue<Integer> truckQueue = new LinkedList<>();
 
         for(int i : truck_weights) {
-            queue.add(i);
+            truckQueue.add(i);
         }
 
-        while(!queue.isEmpty()) {
-            if(queue.peek() <= weight) {
+        for(int i = 0; i < bridge_length; i++) {
+            bridgeQueue.add(0);
+        }
 
-            }
-            answer++;
+        while(!truckQueue.isEmpty()) {
+
         }
         return answer;
     }

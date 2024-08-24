@@ -15,8 +15,7 @@ public class Development {
     public List<Integer> solution(int[] progresses, int[] speeds) {
         List<Integer> answerList = new LinkedList<>();
         Queue<Integer> pq = new LinkedList<>();
-        int[] days = new int[progresses.length];
-        int count = 1;
+        int count = 0;
         int day = 1;
 
         for(int i : progresses) {
@@ -24,26 +23,19 @@ public class Development {
         }
 
         while(!pq.isEmpty()) {
-            if(pq.peek() + speeds[speeds.length - pq.size()] * day >= 100) {
-                days[speeds.length - pq.size()] = day;
-                pq.poll();
-                day = 1;
-            }
-            day++;
-        }
-
-        for(int i = 0; i < days.length - 1; i++) {
-            if(days[i] > days[i + 1]) {
-                days[i + 1] = days[i];
-            }
-
-            if(days[i] == days[i + 1]) {
+            boolean isComplete = pq.peek() + speeds[speeds.length - pq.size()] * day >= 100;
+            if(isComplete) {
                 count++;
+                pq.poll();
             } else {
-                answerList.add(count);
-                count = 1;
+                if(count != 0) {
+                    answerList.add(count);
+                    count = 0;
+                }
+                day++;
             }
         }
+
         answerList.add(count);
 
         return answerList;
