@@ -8,7 +8,7 @@ public class AnsMakeMaxNum {
     }
 
     public String solution(String number, int k) {
-        String answer = "";
+        StringBuilder answerSb = new StringBuilder();
         int index = 0;
 
         for (int i = 0; i < number.length() - k; i++) {
@@ -19,9 +19,9 @@ public class AnsMakeMaxNum {
                     index = j + 1;
                 }
             }
-            answer = answer + max;
+            answerSb.append(max);
         }
 
-        return answer;
+        return answerSb.toString();
     }
 }
